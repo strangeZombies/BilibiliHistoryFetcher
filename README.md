@@ -79,9 +79,9 @@
    - 直接从[这里](https://raw.githubusercontent.com/2977094657/BilibiliHistoryFetcher/master/docker-compose.yml)下载
    - 或使用以下命令下载：
      ```bash
-     curl -O https://raw.githubusercontent.com/2977094657/BilibiliHistoryFetcher/master/docker-compose.yml
+     curl -O https://raw.githubusercontent.com/strangeZombies/BilibiliHistoryFetcher/master/docker-compose.yml
      # 或
-     wget https://raw.githubusercontent.com/2977094657/BilibiliHistoryFetcher/master/docker-compose.yml
+     wget https://raw.githubusercontent.com/strangeZombies/BilibiliHistoryFetcher/master/docker-compose.yml
      ```
 
 3. 使用Docker Compose启动服务：
