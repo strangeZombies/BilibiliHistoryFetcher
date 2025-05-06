@@ -7,16 +7,16 @@ ENV all_proxy=${PROXY} \
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Dynamically detect codename and set apt mirror to Tsinghua using DEB822 format
+# Dynamically detect codename and set apt mirror to Tsinghua ubuntu-ports using DEB822 format
 RUN CODENAME=$(grep -oP 'deb\s+\S+\s+\K\w+' /etc/apt/sources.list | head -n 1 || echo "noble") && \
     echo "Types: deb" > /etc/apt/sources.list.d/ubuntu.sources && \
-    echo "URIs: http://mirrors.tuna.tsinghua.edu.cn/ubuntu" >> /etc/apt/sources.list.d/ubuntu.sources && \
+    echo "URIs: https://mirrors.tuna.tsinghua.edu.cn/ubuntu-ports" >> /etc/apt/sources.list.d/ubuntu.sources && \
     echo "Suites: $CODENAME $CODENAME-updates $CODENAME-backports" >> /etc/apt/sources.list.d/ubuntu.sources && \
     echo "Components: main restricted universe multiverse" >> /etc/apt/sources.list.d/ubuntu.sources && \
     echo "Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg" >> /etc/apt/sources.list.d/ubuntu.sources && \
     echo "" >> /etc/apt/sources.list.d/ubuntu.sources && \
     echo "Types: deb" >> /etc/apt/sources.list.d/ubuntu.sources && \
-    echo "URIs: http://security.ubuntu.com/ubuntu/" >> /etc/apt/sources.list.d/ubuntu.sources && \
+    echo "URIs: http://ports.ubuntu.com/ubuntu-ports/" >> /etc/apt/sources.list.d/ubuntu.sources && \
     echo "Suites: $CODENAME-security" >> /etc/apt/sources.list.d/ubuntu.sources && \
     echo "Components: main restricted universe multiverse" >> /etc/apt/sources.list.d/ubuntu.sources && \
     echo "Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg" >> /etc/apt/sources.list.d/ubuntu.sources && \
