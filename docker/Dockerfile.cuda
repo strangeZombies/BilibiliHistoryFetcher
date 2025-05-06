@@ -9,9 +9,9 @@ ENV all_proxy=${PROXY} \
 ENV DEBIAN_FRONTEND=noninteractive
 
 # 安装系统依赖、Python 和 FFmpeg
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN sudo apt-get update && sudo apt-get install -y --no-install-recommends \
     ffmpeg \
-    && apt-get clean \
+    && sudo apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 ENV UV_LINK_MODE=copy
