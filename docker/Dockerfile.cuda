@@ -6,6 +6,20 @@ ENV all_proxy=${PROXY} \
     https_proxy=${PROXY}
 
 ENV DEBIAN_FRONTEND=noninteractive
+
+# Install curl and sudo for chsrc installation and execution
+RUN apt-get update && \
+    apt-get install -y curl sudo && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Install chsrc and switch apt source for Ubuntu
+RUN curl https://chsrc.run/posix | bash -s -- -d /usr/local/bin && \
+    sudo /usr/local/bin/chsrc set ubuntu -dry && \
+    sudo /usr/local/bin/chsrc set ubuntu && \
+    rm -rf /tmp/* /var/tmp/*
+
+# Install ffmpeg
 RUN apt-get update --fix-missing || apt-get update && \
     apt-get install -y ffmpeg && \
     apt-get clean && \
@@ -17,7 +31,6 @@ WORKDIR /app
 COPY . .
 RUN --mount=type=cache,target=/root/.cache/uv \
     uv sync
-# faster-whisper doesn't require torch, so we don't need to install it
 
 # Set CUDA environment variables for faster-whisper
 ENV CUDA_VISIBLE_DEVICES=0
