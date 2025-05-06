@@ -1,5 +1,5 @@
 #FROM nvidia/cuda:12.6.3-base-ubuntu24.04
-FROM aperimau/nvidia-cuda-ffmpeg:12.0.1-6.1.1-ubuntu22.04-main
+FROM nvidia/cuda:12.8.1-cudnn-runtime-ubuntu24.04
 
 ARG PROXY=""
 ENV all_proxy=${PROXY} \
