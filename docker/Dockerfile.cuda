@@ -7,10 +7,8 @@ ENV all_proxy=${PROXY} \
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Set DNS and initial apt mirror to Tsinghua
-RUN echo "nameserver 8.8.8.8" > /etc/resolv.conf && \
-    echo "nameserver 1.1.1.1" >> /etc/resolv.conf && \
-    sed -i -e 's#http://archive.ubuntu.com/ubuntu/#http://mirrors.tuna.tsinghua.edu.cn/ubuntu/#' /etc/apt/sources.list && \
+# Set initial apt mirror to Tsinghua
+RUN sed -i -e 's#http://archive.ubuntu.com/ubuntu/#http://mirrors.tuna.tsinghua.edu.cn/ubuntu/#' /etc/apt/sources.list && \
     cat /etc/apt/sources.list
 
 # Install software-properties-common, aria2, apt-fast, enable universe, update with fallback
