@@ -7,15 +7,6 @@ ENV all_proxy=${PROXY} \
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Install curl and sudo for chsrc installation and execution
-RUN apt-get install -y curl sudo 
-
-# Install chsrc and switch apt source for Ubuntu
-RUN curl https://chsrc.run/posix | bash -s -- -d /usr/local/bin && \
-    sudo /usr/local/bin/chsrc set ubuntu -dry && \
-    sudo /usr/local/bin/chsrc set ubuntu && \
-    rm -rf /tmp/* /var/tmp/*
-
 # Install ffmpeg
 RUN apt-get update --fix-missing || apt-get update && \
     apt-get install -y ffmpeg && \
